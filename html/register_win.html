@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+</head>
+<body>
+  <header class="aui-bar aui-bar-nav" id="aui-header">
+      <a class="aui-btn aui-pull-left" tapmode onclick="closeWin()">
+          <span class="aui-iconfont aui-icon-left"></span>
+      </a>
+      <div class="aui-title">注册</div>
+  </header>
+  <footer class="aui-bar aui-bar-tab" id="footer">
+      <div class="aui-bar-tab-item aui-padded-l-15 aui-padded-r-15">
+        
+      </div>
+  </footer>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    apiready = function(){
+        api.parseTapmode();
+        var header = $api.byId('aui-header');
+        $api.fixStatusBar(header);
+        var headerPos = $api.offset(header);
+        var body_h = $api.offset($api.dom('body')).h;
+        api.openFrame({
+            name: 'register_frm',
+            url: 'register_frm.html',
+            bounces: true,
+            rect: {
+                x: 0,
+                y: headerPos.h,
+                w: 'auto',
+                h: 'auto'
+            }
+        })
+    };
+    function closeWin(){
+        api.closeWin({
+        });
+    }
+</script>
+
+
+
+
+
+
+//2018-03-05
+<script>
+var model=api.require('model');
+model.config
+model.config({
+    appKey: '4D88DA15-50F5-79A5-4E06-27BE883BE1CE',
+    host: 'www.Coming.com'
+});
+
+model.insert
+model.insert({
+    class: 'UserName',
+    value:{
+      name:'admin',
+      password:'admin'
+    }
+},function(ret,err){
+});
+
+model.deleteById
+model.deleteById({
+    class: 'UserName',
+    id: '5a9d5e39efb0d43b6c07accd'
+},function(ret,err){
+});
+
+model.updateById
+model.updateById({
+    class: 'UserName',
+    id: '5a9d5eb9feb9d503164497d1',
+    value:{
+      password:'123456'
+    }
+},function(ret,err){
+});
+
+model.findById
+model.findById({
+    class: 'UserName',
+    id: '5a9d5eb9feb9d503164497d1'
+},function(ret,err){
+  if (ret) {
+    alert( JSON.stringify( ret ) );
+  }else {
+     alert( JSON.stringify( err ) );
+  }
+});
+</script>
+
+
+
+//2018-03-06
+<script>
+var model=api.require('model');
+model.config
+model.config({
+    appKey: '4D88DA15-50F5-79A5-4E06-27BE883BE1CE',
+    host: 'www.Coming.com'
+});
+model.findAll
+model.findAll({
+    class: 'UserName',
+    qid: 'qid'
+},function(ret,err){
+
+});
+model.count
+model.count({
+    class: 'UserName',
+    qid: 'qid'
+},function(ret,err){
+});
+model.exist
+model.exist({
+    class: 'UserName',
+    id: 'id'
+},function(ret,err){
+
+});
+
+
+
+</script>
+</html>

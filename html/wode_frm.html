@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>我的界面</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <style type="text/css">
+        .text-white {
+            color: #ffffff !important;
+        }
+        .aui-grid [class*=aui-col-] {
+            padding: 0.75rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部 -->
+    <br>
+
+    <section class="aui-content" id="user-info">
+        <div class="aui-list aui-media-list aui-list-noborder aui-bg-info">
+            <div class="aui-list-item aui-list-item-middle">
+                <div class="aui-media-list-item-inner ">
+                    <div class="aui-list-item-media" style="width:3rem;">
+                        <img src="../image/1.png" class="aui-img-round" >
+                    </div>
+                    <div class="aui-list-item-inner aui-list-item-arrow">
+                        <div class="aui-list-item-text text-white aui-font-size-18">sunshine</div>
+                        <div class="aui-list-item-text text-white">
+                           <div><i class="aui-iconfont aui-icon-mobile aui-font-size-14"></i>152****0989</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="aui-content aui-grid aui-margin-b-15">
+        <div class="aui-row">
+            <div class="aui-col-xs-4 aui-border-r">
+                <big class="aui-text-warning">0.00<small> 元</small></big>
+                <div class="aui-gird-lable aui-font-size-12">余额</div>
+            </div>
+            <div class="aui-col-xs-4 aui-border-r">
+                <big class="aui-text-danger">0.00<small> 个</small></big>
+                <div class="aui-gird-lable aui-font-size-12">优惠</div>
+            </div>
+            <div class="aui-col-xs-4">
+                <big class="aui-text-success">0.00<small> 分</small></big>
+                <div class="aui-gird-lable aui-font-size-12">积分</div>
+            </div>
+        </div>
+    </section>
+    <section class="aui-content">
+        <ul class="aui-list aui-list-in aui-margin-b-15">
+            <li class="aui-list-item">
+                <div class="aui-list-item-label-icon">
+                    <i class="aui-iconfont aui-icon-location aui-text-info"></i>
+                </div>
+                <div class="aui-list-item-inner aui-list-item-arrow">
+                    <div class="aui-list-item-title" ><a href="../html/Address_frm.html">收货地址</a></div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-label-icon">
+                    <i class="aui-iconfont aui-icon-mobile aui-text-warning"></i>
+                </div>
+                <div class="aui-list-item-inner aui-list-item-arrow">
+                    <div class="aui-list-item-title"> <a href="../html/register_frm.html">邀请注册</a></div>
+                </div>
+            </li>
+
+            <li class="aui-list-item">
+                <div class="aui-list-item-label-icon">
+                    <i class="aui-iconfont aui-icon-like aui-text-danger"></i>
+                </div>
+                <div class="aui-list-item-inner aui-list-item-arrow">
+                    <div class="aui-list-item-title"><a target="_blank"  href="javascript:void(0)"  onclick="openabout()" text-dedecoration="none">关于我们</a></div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+               <div class="aui-list-item-label-icon">
+                 <i class="aui-iconfont aui-icon-gear aui-text-danger"></i>
+               </div>
+               <div class="aui-list-item-inner aui-list-item-arrow">
+                   <div class="aui-list-item-title"><a href="../html/setUp_frm.html">设置</a></div>
+               </div>
+           </li>
+           <!--wode_frm 退出登录上面-->
+           <li class="aui-list-item">
+               <div class="aui-list-item-label-icon">
+                   <i class="aui-iconfont aui-icon-paper aui-text-info"></i>
+               </div>
+               <div class="aui-list-item-inner aui-list-item-arrow">
+                   <div class="aui-list-item-title" ><a href="../html/suggestions_frm.html">意见反馈</a></div>
+               </div>
+           </li>
+           <!-- 放在wode_frm 设置的下面 -->
+           <li class="aui-list-item">
+              <div class="aui-list-item-label-icon">
+                <i class="aui-iconfont aui-icon-back aui-icon-back" ></i>
+              </div>
+              <div class="aui-list-item-inner aui-list-item-arrow">
+                  <div class="aui-list-item-title" onclick="exit()" ><a href="#">退出登陆</a></div>
+              </div>
+          </li>
+        </ul>
+    </section>
+    <footer class="aui-bar aui-bar-tab">
+        <div class="aui-bar-tab-item">
+            <a href="https://www.ele.me"><i class="aui-iconfont aui-icon-paper"></i></a>
+            <div class="aui-bar-tab-label">外卖</div>
+        </div>
+        <div class="aui-bar-tab-item">
+            <a href="../html/shouye_frm.html"><i class="aui-iconfont aui-icon-menu"></i></a>
+            <div class="aui-bar-tab-label">菜单</div>
+        </div>
+        <div class="aui-bar-tab-item">
+            <a href="../html/fenxiang_frm.html"><i class="aui-iconfont aui-icon-location"></i></a>
+            <div class="aui-bar-tab-label">发现</div>
+        </div>
+        <div class="aui-bar-tab-item aui-active">
+        <a href="#"><i class="aui-iconfont aui-icon-my"></i></a>
+            <div class="aui-bar-tab-label">我的</div>
+        </div>
+    </footer>
+</body>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script type="text/javascript">
+    apiready = function () {
+    }
+</script>
+<script>
+  function openabout(){
+    api.openWin({
+        name: 'aboutAs_win',
+        url: './aboutAs_win.html',
+        pageParam: {
+            name: 'test'
+        }
+    });
+  }
+</script>
+<script>
+ function exit(){  // 注销登录的代码  放在wode_frm最下面
+  $api.rmStorage('name');
+  alert("注销成功！")
+  api.openWin({
+      name: 'login',
+      url: './login_frm.html',
+      pageParam: {
+          name: 'test'
+      }
+  });
+ }
+</script>
+</html>

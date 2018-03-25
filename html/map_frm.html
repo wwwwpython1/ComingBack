@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>首页</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+</head>
+
+<body >
+
+  <input type="button" value="高德为你服务" onclick="map()">
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script >
+    function map() {
+      //alert("map")
+        var aMap = api.require('aMap');
+        aMap.open({
+            rect: {
+                x: 0,
+                y: 0,
+                w: 400,
+                h: 600
+            },
+            showUserLocation: true,
+            zoomLevel: 11,
+            center: {
+                lon: 116.4021310000,
+                lat: 39.9994480000
+            },
+            fixedOn: api.frameName,
+            fixed: true
+        }, function(ret, err) {
+            if (ret.status) {
+                alert(JSON.stringify(ret));
+            } else {
+                alert(JSON.stringify(err));
+            }
+        });
+    }
+
+      function closeWin(){
+        window.location.href='shouye_frm.html';
+      }
+
+</script>
+
+
+</html>

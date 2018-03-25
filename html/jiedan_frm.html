@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>到了么接单界面</title>
+    <style type="text/css">
+        #classify {
+            color: #ffffff !important;
+        }
+
+        .louhao {
+            text-align: center;
+        }
+
+        .fuwu {
+            color: #ff0000;
+        }
+    </style>
+
+
+    <script type="text/javascript" src="../script/api.js"></script>
+    <script type="text/javascript">
+        function query() {
+            var re = confirm("同意本平台服务协议");
+            var floornum = document.getElementById("floornum").value;
+            if (re == true) {
+                alert("您已同意本平台服务协议，我们将为您展示相应楼层的物流信息");
+
+                ///////////////////////////////////////////查询
+
+                var query = api.require('query');
+                //var query = api.require('query');
+
+                query.createQuery
+                query.createQuery(function(ret, err) {
+                    if (ret && ret.qid) {
+                        query.whereEqual({
+                            qid: ret.qid,
+                            column: 'floornum',
+                            value: floornum
+                        });
+
+                        var model = api.require('model');
+                        model.config
+                        model.config({
+                            appKey: '4D88DA15-50F5-79A5-4E06-27BE883BE1CE',
+                            host: 'https://d.apicloud.com'
+                        });
+
+                        model.findAll
+                        model.findAll({
+                            class: 'form',
+                            qid: ret.qid
+                        }, function(ret, err) {
+                            if (ret) {
+                                for (var i = 0; i < ret.length; i++) {
+                                    if (ret[i].floornum == floornum) {
+
+                                        alert("已经接单"  + "货单是:" + ret[i].huodan + "电话是:" + ret[i].tel + "地址是:" + ret[i].address + "昵称是:" + ret[i].codename + "楼号是:" + ret[i].floornum + "宿舍号:" + ret[i].deptnum);
+
+                                    }
+
+                                }
+                            }
+                        });
+
+                    }
+                });
+
+                /////////////////////////////////////////////////
+
+            } else {
+                alert("不同意本服务协议不可接单！")
+                api.openWin({
+                    name: 'shouye',
+                    url: './shouye_frm.html',
+                    pageParam: {
+                        name: 'shouye'
+                    }
+                });
+
+            }
+
+        }
+    </script>
+</head>
+
+<body>
+    <input type="text" id="floornum" placeholder="输入楼号，如：16">
+    <input type="button" value="查询" onclick="query()">
+    </div>
+
+
+
+    <div class="fuwu">服务协议：</div>
+
+    <div>
+        1. 取件者和代取者必须是有条件、有资质注册和使用到了么配送平台的在校大学生，用户注册和使用到了么平台的服务不违反任何法律或合同约定的义务。如果不具备前述条件或资格的，到了么配送平台有权中止或注销该用户的账户。
+    </div>
+    <div>
+        2. 代取这者必须提供真实可靠的的各人信息，若因提供虚假个人信息导致快递意外丢失，将追究代取者的法律责任。
+    </div>
+    <div>
+        3. 代取者必须确保规定时间内完成接单任务，若违约三次及三次以上，将取消代取资格。
+    </div>
+    <div>
+        4. 代取者在配送中导致快递意外损坏或丢失，由此给到了么配送平台造成不利影响，该平台有权要求代取者赔偿、追偿(包括但不限于赔偿金、补偿金、罚金以及诉讼费、调查费及律师费等)给客户及平台所带来的损失。
+    </div>
+    <div>
+        5. 代取者在未经允许的情况下不得对外透漏客户的个人信息，若经发现，该平台有权终止或注销所在账户，情节严重者，将追究其法律责任。
+    </div>
+    <div>
+        6. 客户不可随意取消订单。若所发快递信息已被接单，在代取者还未取件的情况下，客户若想取消订单，将支付5％物流费用，若代取者已取件，将无法取消订单。
+    </div>
+    <div>
+        7. 客户务必提供准确信息，若因信息不准确导致快递无法收取，造成的损失由客户自己承担，本平台概不负责。
+    </div>
+    <div>
+        8. 到了么是一款为在校大学生提供便利的取快递的平台，若用户肆意利用该平台传播不良信息、广告造成不良影响，我们有权要求进行理赔。
+    </div>
+    <div>
+        9. 点击该页“查询”按钮，将会展示对应楼层用户的取件信息，即代表已同意本服务协议。
+        <div>
+            <div>
+                10. 未尽事宜或代取者和物主产生纠纷，可联系：18829508534，到了么平台竭诚为您服务。
+            </div>
+
+</body>
+
+</html>

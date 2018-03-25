@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+        <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+        <title>点评</title>
+        <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+        <style type="text/css">
+            #classify {
+                color: #ffffff !important;
+            }
+            .like{ font-size:20px;  color:#ccc; cursor:pointer;}
+            .cs{color:#f00;}
+        </style>
+   </head>
+ <body>
+   <div></div>
+   <br>
+   <span ><p style="text-align:center;color:red">您的评价是我们不断提高服务质量的动力</P></span>
+<section class="aui-content aui-margin-b-10" style="overflow:hidden; background:#ffffff;">
+    <div class="aui-info aui-padded-l-15 aui-padded-r-15">
+        <div class="aui-info-item">
+            <img src="../image/liulangnan.png" class="aui-margin-r-10" style="width:2rem;border-radius:4px;" />
+            <input type="text" id="dianping"><br>
+        </div>
+        <div class="aui-info-item">
+            <input type="button" value="点评" onclick="alert('点评已收到，审核后在下方显示')">
+        </div>
+        <div class="aui-info-item">
+            <i class="aui-iconfont aui-icon-pencil"></i>
+        </div>
+
+    </div>
+<ction>
+<section class="aui-content">
+    <div class="aui-card-list">
+        <div class="aui-card-list-header aui-card-list-user">
+            <div class="aui-card-list-user-avatar">
+                <img src="../image/gril.jpg" class="aui-margin-r-10" style="width:2rem;border-radius:4px;" />
+            </div>
+            <div class="aui-card-list-user-name">
+                <div>小太阳</div>
+                <i class="aui-iconfont aui-icon-down"></i>
+            </div>
+            <div class="aui-card-list-user-info">08-09 11:05</div>
+        </div>
+        <div class="aui-card-list-content aui-list aui-media-list aui-list-noborder aui-padded-t-0">
+            <div class="aui-list-item aui-list-item-middle aui-padded-r-15">
+                <div class="aui-media-list-item-inner "  style="background:#f5f5f5;">
+                    <div class="aui-list-item-media aui-padded-t-0 aui-padded-b-0 aui-padded-r-0" style="width:3rem;">
+                        <img src="../image/hongbao.png">
+                    </div>
+                    <div class="aui-list-item-inner aui-padded-l-10">
+                      <a href="#">  呼唤朋友拿红包<a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="aui-card-list-footer aui-border-t aui-margin-t-10" style="padding-left:1.5rem;padding-right:1.5rem;">
+          <div>
+              <p class="like"><i class="aui-iconfont aui-icon-star aui-margin-r-5">点赞</i></p>
+          </div>
+          <div>
+              <a href="../html/pinlun_frm.html"><p class="#"><i class="aui-iconfont aui-icon-comment aui-margin-r-5"></i>评论</p></a>
+          </div>
+          <div>
+              <p class="#"><i class="aui-iconfont aui-icon-star aui-margin-r-5"  onclick="scane()"></i>打赏</p>
+          </div>
+        </div>
+    </div>
+<ction>
+<section class="aui-content">
+    <div class="aui-card-list aui-margin-b-0">
+        <div class="aui-card-list-header aui-card-list-user">
+            <div class="aui-card-list-user-avatar">
+                <img src="../image/demo/i4.png" class="aui-margin-r-10" style="width:2rem;border-radius:4px;" />
+            </div>
+            <div class="aui-card-list-user-name">
+                <div>您当前的信用值为：XXX</div>
+                <i class="aui-iconfont aui-icon-down"></i>
+            </div>
+            <div class="aui-card-list-user-info">08-09 11:05</div>
+        </div>
+        <div class="aui-card-list-content aui-text-center">
+            <div class="aui-font-size-20">本月XX分，已更新</div>
+            <p class="aui-text-danger aui-margin-b-10">评估时间：2016-08-06</p>
+            <p class="aui-margin-b-10">点滴珍贵，重在积累</p>
+        </div>
+        <div class="aui-card-list-footer aui-text-center aui-border-t">
+            <div class="aui-text-info"> <a href="#">立即查看 </a></div>
+        </div>
+    </div>
+<ction>
+
+</body>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script type="text/javascript">
+    apiready = function () {
+    }
+</script>
+
+<script typet="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    $(function () {
+        $(".like").click(function () {
+            $(this).toggleClass('cs');
+        })
+    })
+
+</script>
+<script>
+    function scane() {
+        var FNScanner = api.require('FNScanner');
+        FNScanner.openView({
+            autorotation: true
+        }, function(ret) {
+            if (ret) {
+                var res = JSON.stringify(ret);
+                alert("1" + res);
+                alert("2" + ret.eventType);
+            }
+        });
+    }
+</script>
+
+</html>

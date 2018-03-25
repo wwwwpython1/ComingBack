@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no" />
+<meta charset="utf-8">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+
+<!--公共样式-->
+<link rel="stylesheet" href="../css/reset.css" />
+<!--主要样式-->
+<link rel="stylesheet" type="text/css" href="../css/simple-calendar.css">
+<link rel="stylesheet" href="../css/calendar.css" />
+
+<title>日历</title>
+</head>
+<body>
+<div class="inner">
+	<div id='calendar' class="sc-calendar">
+		<div class="sc-header">
+			<div class="sc-title">
+				<div class="year"><span class="sc-select-year" name=""></span>年</div>
+				<div class="month">
+					<div class="arrow sc-mleft"></div>
+					<div class="monthdiv">
+						<span class="sc-select-month" name=""></span>
+					</div>
+					<div class="arrow sc-mright"></div>
+				</div>
+			</div>
+			<div class="sc-week"></div>
+		</div>
+		<div class="sc-body">
+			<div class="sc-days"></div>
+		</div>
+	</div>
+	<div class="announcement">
+		<ul class="matter">
+		</ul>
+	</div>
+</div>
+
+<script type="text/javascript" src="../js/jquery.min.js" ></script>
+<script type="text/javascript" src="../js/simple-calendar.js"></script>
+<script type="text/javascript" src="../js/hammer-2.0.8-min.js"></script>
+<script type="text/javascript">
+	var myCalendar = new SimpleCalendar('#calendar');
+	$(function(){
+		var monthCH = $('.sc-select-month').text();
+		$(".sc-mleft").click(function(){
+			myCalendar.subMonth();
+		   var year = $('.sc-select-year').text();
+		   var monthCH = $('.sc-select-month').text();
+		   var month = SimpleCalendar.prototype.languageData.months_CH.indexOf(monthCH)+1;
+	   })
+		$(".sc-mright").click(function(){
+			myCalendar.addMonth();
+			var year = $('.sc-select-year').text();
+			var monthCH = $('.sc-select-month').text();
+			var month = SimpleCalendar.prototype.languageData.months_CH.indexOf(monthCH)+1;
+		})
+	});
+
+	//滑动切换
+	var myElement = document.getElementById('calendar');
+　　  			var hammer = new Hammer(myElement);
+	hammer.on("swipeleft", function (ev) {
+		myCalendar.addMonth();
+	});
+	hammer.on("swiperight", function (ev) {
+		myCalendar.subMonth();
+	});
+
+	//添加标记
+	var mark = {
+		'2018-2-1':[
+			{title:'通知通知事件',startTime:'2018-2-2 8:00:00',endTime:'2018-2-2 11:30:00'},
+			{title:'校历通知通知事件校历通知通知事件校历通知通知事件校历通知通知事件校历通知通知事件校历通知通知事件',startTime:'2018-2-2 18:00:00',endTime:'2018-2-2 19:30:00'}],
+		'2018-1-10':[{title:'3dadddddd',startTime:'2018-2-30 6:00:00',endTime:'2018-2-30 11:30:00'}],
+		'2018-1-15':[{title:'assss',startTime:'2018-2-15 12:00:00',endTime:'2018-2-15 14:30:00'}]
+	};
+	myCalendar._defaultOptions.mark=mark;
+	myCalendar.update();
+
+
+
+	//显示当天的活动在初始化mark之后
+	//初始化今天的活动
+	announceList($('.sc-today'));
+	//有标记的日期点击事件
+	$('#calendar').on("click", '.sc-selected', function() {
+		announceList($(this));
+	});
+
+	//显示选择日期当天的活动
+	function announceList(v){
+		console.log(v)
+		if(v.children().hasClass('sc-mark-show')){
+			var year = $('.sc-select-year').text();
+			var monthCH = $('.sc-select-month').text();
+			var day = v.children()[1].innerText;
+			var month = SimpleCalendar.prototype.languageData.months_CH.indexOf(monthCH)+1;
+			var date = year + '-' + month + '-' + day;
+			var content = mark[date];
+			var matterHtml='';
+			for(var i=0;i<content.length;i++){
+				matterHtml +='<li class="announceItem"><div><div class="fl announceImg">'
+					+'<img class=" " src="images/content.png"></div>'
+					+'<p class="announceContent">'+content[i].title+'</p>'
+					+'</div><div class="announceTime">'+content[i].startTime+' - '+content[i].endTime+'</div></li>';
+			}
+			$('.matter').html(matterHtml);
+		}else{
+			var matterHtml=''
+			matterHtml +='<li class="announceItem"><div><p class="announceContent">当前日期暂无活动</p></div></li>';
+			$('.matter').html(matterHtml);
+		}
+	}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>到了么注册界面</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <style>
+        .login-third {
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="../1.html" method="post">
+        <section class="aui-content aui-margin-t-15">
+            <ul class="aui-list aui-form-list">
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label aui-border-r color-orange">
+                            账号： <small class="aui-margin-l-5 aui-text-warning"></small>
+                        </div>
+                        <div class="aui-list-item-input aui-padded-l-10">
+                            <input type="number" pattern="[0-9]*" placeholder="输入帐号" id="name">
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label aui-border-r color-orange">
+                            密码： <small class="aui-margin-l-5 aui-text-warning"></small>
+                        </div>
+                        <div class="aui-list-item-input aui-padded-l-10">
+                            <input type="password" pattern="[0-9]*" id="pwd" placeholder="输入密码">
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label aui-border-r color-orange">
+                            重新输入密码： <small class="aui-margin-l-5 aui-text-warning"></small>
+                        </div>
+                        <div class="aui-list-item-input aui-padded-l-10">
+                            <input type="password" pattern="[0-9]*" id="pwd1" placeholder="重新输入密码">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </form>
+    <section class="aui-content-padded">
+        <div class="aui-btn aui-btn-block aui-btn-info aui-btn-sm" onclick="register()">注册</div>
+    </section>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    function register() {
+        var name = document.getElementById("name").value;
+        var pwd = document.getElementById("pwd").value;
+        var pwd1 = document.getElementById("pwd1").value;
+
+        //查询云端数据库里面的字段然后与输入的比较
+        if (pwd == pwd1) {
+
+
+            var query = api.require('query');
+            query.createQuery(function(ret, err) {
+                if (ret && ret.qid) {
+                    query.whereEqual({
+                        qid: ret.qid,
+                        column: 'name',
+                        value: name
+                    });
+                }
+                var model = api.require('model');
+                model.findAll({
+                    class: "UserName",
+                    qid: ret.qid
+                }, function(ret, err) {
+                    if (ret) {
+                        //ret代表的是在查询的暑数据的条数
+                        if (ret.length == 1) {
+                            alert("该账号已注册")
+                                //tel_check = false;
+                            alert(ret)
+                        } else {
+                            if (name.length < 6 || name.length > 11) {
+                                //tel_check = false;
+                                //tel做预报留的字段
+                                alert("账号输入不合格")
+                            } else {
+                                //输入成功  然后直接插入云端数据库
+                                var model = api.require('model');
+                                model.config
+                                model.config({
+                                    appKey: '4D88DA15-50F5-79A5-4E06-27BE883BE1CE',
+                                    host: 'https://d.apicloud.com'
+                                });
+
+                                model.insert
+                                model.insert({
+                                    class: 'UserName',
+                                    value: {
+                                        name: name,
+                                        pwd: pwd
+                                    }
+                                }, function(ret, err) {});
+                                alert("注册成功！")
+                            }
+
+                        }
+                    }
+                });
+            });
+        } else {
+            alert("密码不一样")
+        }
+    }
+</script>
+
+</html>

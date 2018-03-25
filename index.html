@@ -1,11 +1,10 @@
 <!doctype html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
-    <title>Hello APP</title>
+    <title>到了么</title>
     <link rel="stylesheet" type="text/css" href="./css/api.css" />
     <style type="text/css">
         html,
@@ -46,17 +45,17 @@
 </head>
 
 <body class="wrap">
-    <header>APICloud</header>
+    <header>到了么</header>
     <section class="flex-1">
 
     </section>
-    <footer>Copyright &copy;<span id="year"></span></footer>
+
 </body>
 <script type="text/javascript" src="./script/api.js"></script>
 <script type="text/javascript">
     apiready = function() {
         //输出Log，Log将显示在APICloud Studio控制台
-        console.log("Hello World! Hello APICloud!");
+        console.log("欢迎使用到了么应用");
 
         var header = $api.dom('header'); // 获取 header 标签元素
         var footer = $api.dom('footer'); // 获取 footer 标签元素
@@ -67,22 +66,32 @@
         var headerH = $api.fixStatusBar(header);
         // 最新api.js为了适配iPhoneX增加的方法，修复底部Footer部分与iPhoneX的底部虚拟横条键重叠的问题；
         var footerH = $api.fixTabBar(footer);
+        var name = $api.getStorage('name');
+        if (name==null) {
+          api.openFrame({
+              name: 'test',
+              url:'html/login_frm.html',
+              bounces: true,
+              rect: { // 推荐使用Margin布局，用于适配屏幕的动态变化
+                  marginTop: headerH, // main页面距离win顶部的高度
+                  marginBottom: footerH, // main页面距离win底部的高度
+                  w: 'auto' // main页面的宽度 自适应屏幕宽度
+              }
+          });
+        }
+          else {
+            api.openWin({
+                name: 'main',
+                url: 'html/mian.html',
+                pageParam: {
+                    name: 'test'
+                }
+            });
 
-        api.openFrame({
-            name: 'main',
-            url: 'html/main.html',
-            bounces: true,
-            rect: { // 推荐使用Margin布局，用于适配屏幕的动态变化
-                marginTop: headerH, // main页面距离win顶部的高度
-                marginBottom: footerH, // main页面距离win底部的高度
-                w: 'auto' // main页面的宽度 自适应屏幕宽度
-            }
-        });
+          }
 
-        // 获取当前年份时间，并加载显示到页面
-        var year = $api.byId('year');
-        year.innerHTML = new Date().getFullYear();
-    };
+
+        }
 
 </script>
 

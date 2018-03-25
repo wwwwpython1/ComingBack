@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+</head>
+
+<body>
+
+    <p class="aui-text-center aui-margin-t-15">发单内容</p>
+    <form action="#" method="post">
+        <section class="aui-content aui-margin-t-15">
+            <ul class="aui-list aui-form-list">
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label aui-border-r color-orange">
+                            昵称： <small class="aui-margin-l-5 aui-text-warning"></small>
+                        </div>
+                        <div class="aui-list-item-input aui-padded-l-10">
+                            <input type="text" placeholder="输入昵称" id="codename">
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label aui-border-r color-orange">
+                            货单号： <small class="aui-margin-l-5 aui-text-warning"></small>
+                        </div>
+                        <div class="aui-list-item-input aui-padded-l-10">
+                            <input type="number" pattern="[0-9]*" placeholder="输入货单号" id="huodan">
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label aui-border-r color-orange">
+                            电话号码： <small class="aui-margin-l-5 aui-text-warning"></small>
+                        </div>
+                        <div class="aui-list-item-input aui-padded-l-10">
+                            <input type="text" id="tel" placeholder="输入电话号码">
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label aui-border-r color-orange">
+                            地址： <small class="aui-margin-l-5 aui-text-warning"></small>
+                        </div>
+                        <div class="aui-list-item-input aui-padded-l-10">
+                            <input type="text" id="address" placeholder="输入地址">
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label aui-border-r color-orange">
+                            楼号： <small class="aui-margin-l-5 aui-text-warning"></small>
+                        </div>
+                        <div class="aui-list-item-input aui-padded-l-10">
+                            <input type="text" id="floornum" placeholder="输入楼号">
+                        </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label aui-border-r color-orange">
+                            宿舍号： <small class="aui-margin-l-5 aui-text-warning"></small>
+                        </div>
+                        <div class="aui-list-item-input aui-padded-l-10">
+                            <input type="text" placeholder="输入宿舍号" id="deptnum">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+        </section>
+        <section class="aui-content-padded">
+            <div class="aui-btn aui-btn-block aui-btn-info aui-btn-sm" onclick="fabu()">发布消息</div>
+        </section>
+    </form>
+
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    function fabu() {
+
+        var codename = document.getElementById("codename").value;
+        var huodan = document.getElementById("huodan").value;
+        var tel = document.getElementById("tel").value;
+        var address = document.getElementById("address").value;
+        var floornum = document.getElementById("floornum").value;
+        var deptnum = document.getElementById("deptnum").value;
+        var model = api.require('model');
+        model.config
+        model.config({
+            appKey: '4D88DA15-50F5-79A5-4E06-27BE883BE1CE',
+            host: 'https://d.apicloud.com'
+        });
+
+        model.insert
+        model.insert({
+            class: 'form',
+            value: {
+                huodan: huodan,
+                tel: tel,
+                address: address,
+                codename: codename,
+                floornum: floornum,
+                deptnum: deptnum,
+                state: true
+            }
+        }, function(ret, err) {
+            alert("发布成功")
+        });
+
+    }
+</script>
+
+</html>
